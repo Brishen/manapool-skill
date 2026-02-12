@@ -1,0 +1,585 @@
+{
+  "inventory": [
+    {
+      "id": "04d78475-2d6d-480b-b90b-ee8a240079a0",
+      "product": {
+        "type": "mtg_single",
+        "id": "8bd1f8e7-ee81-4f69-8d1c-1efcaf0b8535",
+        "tcgplayer_sku": 8952426,
+        "single": {
+          "scryfall_id": "545c98b3-dc78-4070-8dcb-f6a246abce09",
+          "mtgjson_id": "b476caa0-3e6d-5108-be0f-6c20becbc8f7",
+          "tcgplayer_id": 656776,
+          "name": "Tataru Taru",
+          "set": "FIC",
+          "number": "466",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 8000,
+      "quantity": 0,
+      "effective_as_of": "2026-01-01T17:31:11.291Z",
+      "product_type": "mtg_single",
+      "product_id": "8bd1f8e7-ee81-4f69-8d1c-1efcaf0b8535"
+    },
+    {
+      "id": "08fe6f70-60fb-4424-8ed6-a0a2fcedc2ac",
+      "product": {
+        "type": "mtg_single",
+        "id": "1045e59e-78cc-4b6e-93dc-e361c7e387d7",
+        "tcgplayer_sku": 7081120,
+        "single": {
+          "scryfall_id": "90fc94d9-b8af-4de8-a42d-ae508f8f1cd5",
+          "mtgjson_id": "44ec73cc-8f5c-56c9-b7a0-a1a54c3f5235",
+          "tcgplayer_id": 491606,
+          "name": "Forgotten Ancient",
+          "set": "MOC",
+          "number": "297",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 40,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:57:31.265Z",
+      "product_type": "mtg_single",
+      "product_id": "1045e59e-78cc-4b6e-93dc-e361c7e387d7"
+    },
+    {
+      "id": "0c5107a6-871e-43a9-adb3-26a7f736beef",
+      "product": {
+        "type": "mtg_single",
+        "id": "e25f8a7e-0384-430e-8227-8b49ec87d5e5",
+        "tcgplayer_sku": 8208870,
+        "single": {
+          "scryfall_id": "7dea7997-546d-474a-b362-31714abe2bb5",
+          "mtgjson_id": "8e52a496-975c-532d-b251-720e817d2dd6",
+          "tcgplayer_id": 578902,
+          "name": "Bedevil",
+          "set": "DSC",
+          "number": "84",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 40,
+      "quantity": 1,
+      "effective_as_of": "2026-01-29T18:09:31.984Z",
+      "product_type": "mtg_single",
+      "product_id": "e25f8a7e-0384-430e-8227-8b49ec87d5e5"
+    },
+    {
+      "id": "24d29f7e-dce9-435d-b725-8c7fa44b670f",
+      "product": {
+        "type": "mtg_single",
+        "id": "7204f295-adf1-4f1e-a77c-26ef9e467680",
+        "tcgplayer_sku": null,
+        "single": {
+          "scryfall_id": "de0dbb1c-ae8e-4f40-b7b4-016fea692da9",
+          "mtgjson_id": "5a149b7c-9906-5af6-a890-434df3550f42",
+          "tcgplayer_id": 583899,
+          "name": "Back to Basics",
+          "set": "SLD",
+          "number": "1718",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 1000,
+      "quantity": 1,
+      "effective_as_of": "2026-01-08T19:52:48.054Z",
+      "product_type": "mtg_single",
+      "product_id": "7204f295-adf1-4f1e-a77c-26ef9e467680"
+    },
+    {
+      "id": "3129f1e5-7c5b-404b-b6bb-c7c96c1e3e42",
+      "product": {
+        "type": "mtg_single",
+        "id": "8e72c1d0-99f4-4939-ad7e-fca928c3af97",
+        "tcgplayer_sku": 8953412,
+        "single": {
+          "scryfall_id": "aa1bd238-a9f5-4145-9668-eb49a3b4c2bf",
+          "mtgjson_id": "73e01cfa-ac77-57f7-a08b-722196e63670",
+          "tcgplayer_id": 656900,
+          "name": "Aerith, Last Ancient",
+          "set": "FIC",
+          "number": "471",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 7297,
+      "quantity": 1,
+      "effective_as_of": "2026-02-12T08:40:45.690Z",
+      "product_type": "mtg_single",
+      "product_id": "8e72c1d0-99f4-4939-ad7e-fca928c3af97"
+    },
+    {
+      "id": "3714ba84-ee5e-43d4-b54c-1507f30955dc",
+      "product": {
+        "type": "mtg_single",
+        "id": "33f96ead-25f8-4816-8316-9f0b7a271215",
+        "tcgplayer_sku": 8952511,
+        "single": {
+          "scryfall_id": "99cb1ba3-e16b-414d-8682-fb3b2f350ea2",
+          "mtgjson_id": "b00d023a-2c97-5661-9fd1-73df4925f163",
+          "tcgplayer_id": 656784,
+          "name": "Lulu, Stern Guardian",
+          "set": "FIC",
+          "number": "467",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 9500,
+      "quantity": 1,
+      "effective_as_of": "2026-01-01T17:32:28.319Z",
+      "product_type": "mtg_single",
+      "product_id": "33f96ead-25f8-4816-8316-9f0b7a271215"
+    },
+    {
+      "id": "3dc0cc1c-67a8-4462-a535-3d03bba943ec",
+      "product": {
+        "type": "mtg_single",
+        "id": "5a421775-5e48-4fa2-875f-ebb5710f8319",
+        "tcgplayer_sku": 7076170,
+        "single": {
+          "scryfall_id": "fa7a883f-e180-48ce-b7d4-cded2f74c323",
+          "mtgjson_id": "8d4aa71a-c1bd-54a3-ae61-8fa6c0fbd37a",
+          "tcgplayer_id": 491483,
+          "name": "Bitterthorn, Nissa's Animus",
+          "set": "MOC",
+          "number": "45",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 2100,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:44:57.714Z",
+      "product_type": "mtg_single",
+      "product_id": "5a421775-5e48-4fa2-875f-ebb5710f8319"
+    },
+    {
+      "id": "44a8a8fa-aef7-430b-b852-b733cd12e54c",
+      "product": {
+        "type": "mtg_single",
+        "id": "8ddf401e-6dfe-42f2-b5f4-9e04c21191bc",
+        "tcgplayer_sku": 8952536,
+        "single": {
+          "scryfall_id": "4790a887-26dd-4a5f-9b85-10346cb6328b",
+          "mtgjson_id": "bfab5171-9ff5-51ca-99cb-d4c4c7545981",
+          "tcgplayer_id": 656787,
+          "name": "Snapcaster Mage",
+          "set": "FIC",
+          "number": "469",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 14709,
+      "quantity": 1,
+      "effective_as_of": "2026-02-12T08:37:01.276Z",
+      "product_type": "mtg_single",
+      "product_id": "8ddf401e-6dfe-42f2-b5f4-9e04c21191bc"
+    },
+    {
+      "id": "536c7b58-b873-405f-8427-87b083c7ecb2",
+      "product": {
+        "type": "mtg_single",
+        "id": "e407efa0-3c1b-48b3-928d-36ff499eed28",
+        "tcgplayer_sku": 7078475,
+        "single": {
+          "scryfall_id": "c58ff93f-7135-40af-92ce-358da48694dc",
+          "mtgjson_id": "1295fde0-3b03-5456-b5a4-dfa4849f2578",
+          "tcgplayer_id": 491540,
+          "name": "Nesting Dovehawk",
+          "set": "MOC",
+          "number": "17",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 1800,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T02:44:04.260Z",
+      "product_type": "mtg_single",
+      "product_id": "e407efa0-3c1b-48b3-928d-36ff499eed28"
+    },
+    {
+      "id": "5e5ddde9-aef2-44ae-9906-717005e67a5d",
+      "product": {
+        "type": "mtg_single",
+        "id": "7557aa50-d483-4244-becf-86c66f53420d",
+        "tcgplayer_sku": null,
+        "single": {
+          "scryfall_id": "a125806c-a837-4220-bd05-083e00b1638d",
+          "mtgjson_id": "3f2bb7c9-47d8-5f9e-9448-b04bda4fa17f",
+          "tcgplayer_id": 583901,
+          "name": "Preordain",
+          "set": "SLD",
+          "number": "1719",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 1900,
+      "quantity": 1,
+      "effective_as_of": "2026-01-08T19:53:35.253Z",
+      "product_type": "mtg_single",
+      "product_id": "7557aa50-d483-4244-becf-86c66f53420d"
+    },
+    {
+      "id": "6fd60f8c-d1fa-43d9-85e9-39f48fc29925",
+      "product": {
+        "type": "mtg_single",
+        "id": "dad46033-9b24-47ef-9265-d207d1362b3b",
+        "tcgplayer_sku": 7069005,
+        "single": {
+          "scryfall_id": "614be454-3829-4c3b-9485-930755dfa16d",
+          "mtgjson_id": "24f7673b-bf03-59bf-b89d-c6a493539072",
+          "tcgplayer_id": 491319,
+          "name": "Scrap Trawler",
+          "set": "MOC",
+          "number": "373",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 120,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T02:47:03.439Z",
+      "product_type": "mtg_single",
+      "product_id": "dad46033-9b24-47ef-9265-d207d1362b3b"
+    },
+    {
+      "id": "75f3d13f-83e7-4931-bf6b-cfbb8d0688f2",
+      "product": {
+        "type": "mtg_single",
+        "id": "bc2f8f34-a07b-43b3-a985-1ad0d989d980",
+        "tcgplayer_sku": 7082357,
+        "single": {
+          "scryfall_id": "babc5799-31f3-452e-a61d-5c11f9f81bf9",
+          "mtgjson_id": "547f6a61-5a11-556e-a41b-d0507ee4591f",
+          "tcgplayer_id": 491650,
+          "name": "Thopter Spy Network",
+          "set": "MOC",
+          "number": "241",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 50,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:53:32.124Z",
+      "product_type": "mtg_single",
+      "product_id": "bc2f8f34-a07b-43b3-a985-1ad0d989d980"
+    },
+    {
+      "id": "9a40b011-40b3-4e1f-91e6-0b92f107da3d",
+      "product": {
+        "type": "mtg_single",
+        "id": "d1925aff-7b01-43b5-8a95-ace52d133d84",
+        "tcgplayer_sku": null,
+        "single": {
+          "scryfall_id": "674c5221-9726-4c37-822a-73e60fa55cfa",
+          "mtgjson_id": "0fc81515-21bb-5509-a669-d562ec5bb987",
+          "tcgplayer_id": null,
+          "name": "Summon: Good King Mog XII",
+          "set": "AFIN",
+          "number": "41",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 300,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T03:59:29.775Z",
+      "product_type": "mtg_single",
+      "product_id": "d1925aff-7b01-43b5-8a95-ace52d133d84"
+    },
+    {
+      "id": "b157a96e-09e8-4d65-bf96-6edf68c62e12",
+      "product": {
+        "type": "mtg_single",
+        "id": "927d07da-27ac-4529-9338-26a17ed6c50d",
+        "tcgplayer_sku": 8952966,
+        "single": {
+          "scryfall_id": "9f8b95bd-c709-4259-b3fe-92119b92acae",
+          "mtgjson_id": "f68e8074-826d-5ef9-a6a6-57f4ba97de0c",
+          "tcgplayer_id": 656844,
+          "name": "Birds of Paradise",
+          "set": "FIC",
+          "number": "483",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 1000,
+      "quantity": 0,
+      "effective_as_of": "2026-01-03T21:02:07.323Z",
+      "product_type": "mtg_single",
+      "product_id": "927d07da-27ac-4529-9338-26a17ed6c50d"
+    },
+    {
+      "id": "ba043282-36c8-48c9-9cda-6be5d53fd230",
+      "product": {
+        "type": "mtg_single",
+        "id": "2b169e60-5939-46e3-86c5-e0aa636bb0d9",
+        "tcgplayer_sku": 7082397,
+        "single": {
+          "scryfall_id": "efc9db16-53d3-4d27-ba42-c3c445f2f92f",
+          "mtgjson_id": "f73ad2a8-7d27-586d-9e30-cff02c0e6904",
+          "tcgplayer_id": 491651,
+          "name": "Thopter Assembly",
+          "set": "MOC",
+          "number": "386",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 25,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:56:36.474Z",
+      "product_type": "mtg_single",
+      "product_id": "2b169e60-5939-46e3-86c5-e0aa636bb0d9"
+    },
+    {
+      "id": "c187d064-60f4-4348-9092-89f26850e87b",
+      "product": {
+        "type": "mtg_single",
+        "id": "85398f00-7f99-498b-9c11-73ccd3d22c10",
+        "tcgplayer_sku": 8785673,
+        "single": {
+          "scryfall_id": "668b1796-2722-4d69-9a41-8067ad189ad6",
+          "mtgjson_id": "3765a842-0da4-592d-866e-eb831e0c968c",
+          "tcgplayer_id": 638901,
+          "name": "Sothera, the Supervoid",
+          "set": "EOE",
+          "number": "386",
+          "language_id": "JA",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 8000,
+      "quantity": 1,
+      "effective_as_of": "2026-02-05T08:48:05.567Z",
+      "product_type": "mtg_single",
+      "product_id": "85398f00-7f99-498b-9c11-73ccd3d22c10"
+    },
+    {
+      "id": "d207434a-2a4f-48da-a6d2-7b2a1d8ee368",
+      "product": {
+        "type": "mtg_single",
+        "id": "c7cd14ab-a557-406e-a555-6dbf95b6dc44",
+        "tcgplayer_sku": null,
+        "single": {
+          "scryfall_id": "674c5221-9726-4c37-822a-73e60fa55cfa",
+          "mtgjson_id": "0fc81515-21bb-5509-a669-d562ec5bb987",
+          "tcgplayer_id": null,
+          "name": "Summon: Good King Mog XII",
+          "set": "AFIN",
+          "number": "41",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 300,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T04:01:48.869Z",
+      "product_type": "mtg_single",
+      "product_id": "c7cd14ab-a557-406e-a555-6dbf95b6dc44"
+    },
+    {
+      "id": "d6c60e1c-6d92-4173-8fde-363ac0c8953e",
+      "product": {
+        "type": "mtg_single",
+        "id": "ef915654-e60a-4376-bfe7-95fd75e907e1",
+        "tcgplayer_sku": 8700920,
+        "single": {
+          "scryfall_id": "584394a0-9d72-4fe3-bcfe-bfaceac12e98",
+          "mtgjson_id": "d6409212-94bd-5596-bbe3-cf369ce87a2c",
+          "tcgplayer_id": 631054,
+          "name": "Emet-Selch of the Third Seat",
+          "set": "FIC",
+          "number": "170",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 200,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T03:15:21.796Z",
+      "product_type": "mtg_single",
+      "product_id": "ef915654-e60a-4376-bfe7-95fd75e907e1"
+    },
+    {
+      "id": "e01702b9-7983-49b3-a3c1-7c1445598017",
+      "product": {
+        "type": "mtg_single",
+        "id": "ef027f2f-253f-4f1f-84d8-5064d4f01176",
+        "tcgplayer_sku": 7076675,
+        "single": {
+          "scryfall_id": "2a4f3d89-86dc-45df-9593-d8a7c336ebac",
+          "mtgjson_id": "20a3d5ae-a9a4-56c1-b770-1cca0f0bda59",
+          "tcgplayer_id": 491493,
+          "name": "Darksteel Splicer",
+          "set": "MOC",
+          "number": "13",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 100,
+      "quantity": 0,
+      "effective_as_of": "2026-01-26T02:48:37.074Z",
+      "product_type": "mtg_single",
+      "product_id": "ef027f2f-253f-4f1f-84d8-5064d4f01176"
+    },
+    {
+      "id": "e19b1d3f-1e0d-41ae-a6ff-0ca1a46be98e",
+      "product": {
+        "type": "mtg_single",
+        "id": "6dc24351-1c55-4ae4-93d9-ca9392cdd9e5",
+        "tcgplayer_sku": 8196532,
+        "single": {
+          "scryfall_id": "69a6433f-b832-4edc-bf74-2bed59cb4e20",
+          "mtgjson_id": "39b6423c-f702-528a-92d5-10ba98eb41f1",
+          "tcgplayer_id": 577818,
+          "name": "Disorienting Choice",
+          "set": "DSC",
+          "number": "60",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 25,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:57:03.236Z",
+      "product_type": "mtg_single",
+      "product_id": "6dc24351-1c55-4ae4-93d9-ca9392cdd9e5"
+    },
+    {
+      "id": "ec453b80-0e22-4cda-986a-9e3b1a1a5012",
+      "product": {
+        "type": "mtg_single",
+        "id": "6756bb39-4335-4079-bac5-3452f4138466",
+        "tcgplayer_sku": null,
+        "single": {
+          "scryfall_id": "ce06b786-f407-46fc-920c-238363e18913",
+          "mtgjson_id": "595b5095-72ad-5bc7-840b-fc3b24ec201e",
+          "tcgplayer_id": null,
+          "name": "Vivi Ornitier",
+          "set": "AFIN",
+          "number": "17",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "FO"
+        },
+        "sealed": null
+      },
+      "price_cents": 250,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T04:03:21.251Z",
+      "product_type": "mtg_single",
+      "product_id": "6756bb39-4335-4079-bac5-3452f4138466"
+    },
+    {
+      "id": "f2541668-9b81-46ab-9ee4-9ebe249c2d54",
+      "product": {
+        "type": "mtg_single",
+        "id": "7dfe4c59-1354-4935-978f-95f7dace71e1",
+        "tcgplayer_sku": 8211955,
+        "single": {
+          "scryfall_id": "2b2accb1-d77b-4633-9d0c-b972d9c014bb",
+          "mtgjson_id": "bddd6ac2-992c-5292-ba96-84c3206ada6b",
+          "tcgplayer_id": 579020,
+          "name": "Shark Typhoon",
+          "set": "DSC",
+          "number": "127",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 60,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:57:54.580Z",
+      "product_type": "mtg_single",
+      "product_id": "7dfe4c59-1354-4935-978f-95f7dace71e1"
+    },
+    {
+      "id": "f6fe6f0c-4ae2-49b2-ba08-a5a68bf7ff42",
+      "product": {
+        "type": "mtg_single",
+        "id": "8422698e-6260-4568-ade5-aead3bf5d4a6",
+        "tcgplayer_sku": 7077065,
+        "single": {
+          "scryfall_id": "97fb9c9a-2278-42d0-9632-3a7e8faff74d",
+          "mtgjson_id": "ecc125fa-dc83-56ed-8505-e0323ed64cc0",
+          "tcgplayer_id": 491503,
+          "name": "Filigree Vector",
+          "set": "MOC",
+          "number": "15",
+          "language_id": "EN",
+          "condition_id": "NM",
+          "finish_id": "NF"
+        },
+        "sealed": null
+      },
+      "price_cents": 1200,
+      "quantity": 1,
+      "effective_as_of": "2026-01-26T02:42:39.681Z",
+      "product_type": "mtg_single",
+      "product_id": "8422698e-6260-4568-ade5-aead3bf5d4a6"
+    }
+  ],
+  "pagination": {
+    "total": 23,
+    "limit": 100,
+    "offset": 0,
+    "returned": 23
+  }
+}
