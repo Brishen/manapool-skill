@@ -33,7 +33,7 @@ When searching or listing items, use the following standard codes:
 - Others: `ES`, `PT`, `RU`, `KO`, `CH`, `CS`
 
 ## Tooling
-Most interactions are handled via the CLI script: `/home/bhawkins/clawd/skills/manapool/scripts/manapool_cli.py`.
+Most interactions are handled via the CLI script: `./scripts/manapool_cli.py`.
 
 ## Capabilities
 
@@ -70,5 +70,5 @@ Sellers must monitor and fulfill incoming orders.
 *   `PUT /seller/orders/{id}/fulfillment` (mark as shipped).
 
 ## References
-- Detailed API docs: `/home/bhawkins/clawd/skills/manapool/references/api_docs.md`
-- OpenAPI spec: `/home/bhawkins/clawd/skills/manapool/references/openapi.json`
+- Detailed API docs: `./references/api_docs.md`
+- OpenAPI spec: `./references/openapi.json`
