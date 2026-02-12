@@ -156,18 +156,16 @@ def main():
         inventory_resp = get_seller_inventory(params)
 
         if args.summary:
-            print(f"{'Name':<30} {'Set':<10} {'Price':>8} {'Low':>8} {'Qty':>4}")
-            print("-" * 65)
+            print(f"{'Name':<30} {'Set':<10} {'Price':>8} {'Qty':>4}")
+            print("-" * 55)
             for item in inventory_resp.get("inventory", []):
                 p = item.get("product", {})
                 single = p.get("single", {})
                 name = single.get("name", "Unknown")
-                set_code = single.get("set_code", "???")
+                set_code = single.get("set", "???")
                 price = item.get("price_cents", 0) / 100
-                low = get_lowest_price(item)
-                low_str = f"{low/100:>8.2f}" if low else "     N/A"
                 qty = item.get("quantity", 0)
-                print(f"{name[:30]:<30} {set_code:<10} {price:>8.2f} {low_str} {qty:>4}")
+                print(f"{name[:30]:<30} {set_code:<10} {price:>8.2f} {qty:>4}")
         else:
             print(json.dumps(inventory_resp, indent=2))
 
