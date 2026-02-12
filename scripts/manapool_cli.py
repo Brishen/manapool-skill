@@ -188,10 +188,9 @@ def handle_lowest_prices(args):
         price_market = item.get("price_market")
         price_market_foil = item.get("price_market_foil")
 
-        print(f"TCGPlayer Market Price: {format_price(price_market)} (NF), {format_price(price_market_foil)} (Foil)")
-        print("-" * 55)
-        print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15}")
-        print("-" * 55)
+        print("-" * 75)
+        print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15} {'TCG Market':<15}")
+        print("-" * 75)
 
         variants = item.get("variants", [])
         # Sort variants by finish then condition?
@@ -204,7 +203,11 @@ def handle_lowest_prices(args):
             finish = variant.get("finish_id")
             low = variant.get("low_price")
 
-            print(f"{cond:<10} {finish:<10} {format_price(low):<15}")
+            if not low: continue
+
+            tcg_price = price_market_foil if finish in ["FO", "EF"] else price_market
+
+            print(f"{cond:<10} {finish:<10} {format_price(low):<15} {format_price(tcg_price):<15}")
         print("\n")
 
 def main():
