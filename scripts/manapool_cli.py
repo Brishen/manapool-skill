@@ -96,22 +96,90 @@ def format_price(cents):
 
 def handle_lowest_prices(args):
     params = {}
-    if args.scryfall_ids: params["scryfall_ids"] = args.scryfall_ids
-    if args.tcgplayer_ids: params["tcgplayer_ids"] = args.tcgplayer_ids
-    if args.product_ids: params["product_ids"] = args.product_ids
+    if args.scryfall_ids: params.setdefault("scryfall_ids", []).extend(args.scryfall_ids)
+    if args.tcgplayer_ids: params.setdefault("tcgplayer_ids", []).extend(args.tcgplayer_ids)
+    if args.product_ids: params.setdefault("product_ids", []).extend(args.product_ids)
+
+    if args.inventory_file:
+        try:
+            with open(args.inventory_file, "r") as f:
+                inv_data = json.load(f)
+
+            # Extract scryfall_ids from inventory
+            inventory = inv_data.get("inventory", [])
+            scryfall_ids = []
+            for item in inventory:
+                s_id = item.get("product", {}).get("single", {}).get("scryfall_id")
+                if s_id:
+                    scryfall_ids.append(s_id)
+
+            if scryfall_ids:
+                # Deduplicate
+                scryfall_ids = list(set(scryfall_ids))
+                params.setdefault("scryfall_ids", []).extend(scryfall_ids)
+        except Exception as e:
+            print(f"Error reading inventory file: {e}", file=sys.stderr)
+            return
 
     if not params:
-        print("Error: Must provide at least one search parameter (--scryfall-ids, --tcgplayer-ids, --product-ids).", file=sys.stderr)
+        print("Error: Must provide at least one search parameter (--scryfall-ids, --tcgplayer-ids, --product-ids, --inventory-file).", file=sys.stderr)
         return
 
-    response = search_singles(params)
-    data = response.get("data", [])
+    # Process Scryfall IDs in batches of 100
+    all_data = []
 
-    if not data:
+    # Collect all IDs to fetch
+    s_ids = params.get("scryfall_ids", [])
+    t_ids = params.get("tcgplayer_ids", [])
+    p_ids = params.get("product_ids", [])
+
+    # If mixed params are present, the API says "Only one of... may be provided".
+    # So we should prioritize or split calls.
+    # For now, let's prioritize explicit arguments if mixed, or handle them sequentially.
+    # Actually, the user might provide multiple.
+    # The current implementation of make_request handles list params, but search_singles docs say:
+    # "Only one of scryfall_ids, tcgplayer_ids, tcgplayer_sku_ids, or product_ids may be provided."
+
+    # If we have multiple types, we need to make separate requests.
+
+    requests_to_make = []
+
+    if s_ids:
+        # Deduplicate
+        s_ids = list(set(s_ids))
+        # Batch
+        for i in range(0, len(s_ids), 100):
+            requests_to_make.append({"scryfall_ids": s_ids[i:i+100]})
+
+    if t_ids:
+        t_ids = list(set(t_ids))
+        for i in range(0, len(t_ids), 100):
+            requests_to_make.append({"tcgplayer_ids": t_ids[i:i+100]})
+
+    if p_ids:
+        p_ids = list(set(p_ids))
+        for i in range(0, len(p_ids), 100):
+            requests_to_make.append({"product_ids": p_ids[i:i+100]})
+
+    for req_params in requests_to_make:
+        resp = search_singles(req_params)
+        all_data.extend(resp.get("data", []))
+
+    if not all_data:
         print("No products found.")
         return
 
-    for item in data:
+    # Deduplicate results by ID to avoid printing duplicates if multiple batches return same (unlikely with ID batching but good practice)
+    seen_ids = set()
+    unique_data = []
+    for item in all_data:
+        # Use scryfall_id or product_id as key
+        pid = item.get("scryfall_id") or item.get("product_id") or item.get("name") # Fallback
+        if pid not in seen_ids:
+            seen_ids.add(pid)
+            unique_data.append(item)
+
+    for item in unique_data:
         name = item.get("name")
         set_code = item.get("set_code")
         print(f"Product: {name} ({set_code})")
@@ -159,6 +227,7 @@ def main():
     lowest_prices.add_argument("--scryfall-ids", nargs="+")
     lowest_prices.add_argument("--tcgplayer-ids", nargs="+")
     lowest_prices.add_argument("--product-ids", nargs="+")
+    lowest_prices.add_argument("--inventory-file", help="Path to inventory JSON file to check prices for")
 
     # Prices
     prices = subparsers.add_parser("prices")
