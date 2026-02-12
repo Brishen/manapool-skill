@@ -33,22 +33,22 @@ When searching or listing items, use the following standard codes:
 - Others: `ES`, `PT`, `RU`, `KO`, `CH`, `CS`
 
 ## Tooling
-Most interactions are handled via the CLI script: `./scripts/manapool_cli.py`.
+Most interactions are handled via the CLI script: `uv run manapool`.
 
 ## Capabilities
 
 ### 1. Product Search & Information
 Before buying or selling, you often need to identify the correct product or check market prices.
 
-*   **Search Singles**: `./scripts/manapool_cli.py search-singles --scryfall-ids <id>`
-*   **Search Sealed**: `./scripts/manapool_cli.py search-sealed --tcgplayer-ids <id>`
-*   **Get Prices**: `./scripts/manapool_cli.py prices <singles|sealed|variants>`
+*   **Search Singles**: `uv run manapool search-singles --scryfall-ids <id>`
+*   **Search Sealed**: `uv run manapool search-sealed --tcgplayer-ids <id>`
+*   **Get Prices**: `uv run manapool prices <singles|sealed|variants>`
 
 ### 2. Buying Cards
 The buying process follows a sequence: **Optimize -> Create Order -> Purchase**.
 
 *   **Step 1: Optimize Cart**
-    *   Command: `./scripts/manapool_cli.py optimize <cart_json_file>`
+    *   Command: `uv run manapool optimize <cart_json_file>`
     *   Finds the best combination of sellers for a list of desired items.
 *   **Step 2 & 3: Order/Purchase**
     *   Requires direct API calls (see `references/api_docs.md`).
@@ -58,9 +58,9 @@ The buying process follows a sequence: **Optimize -> Create Order -> Purchase**.
 ### 3. Seller Inventory Management
 Sellers can manage listings using various industry-standard IDs.
 
-*   **List Inventory**: `./scripts/manapool_cli.py seller-inventory`
+*   **List Inventory**: `uv run manapool seller-inventory`
     *   Use `--summary` for a human-readable table with market comparison.
-*   **Update Inventory**: `./scripts/manapool_cli.py update-price --sku <sku> --price-cents <price> --quantity <qty>`
+*   **Update Inventory**: `uv run manapool update-price --sku <sku> --price-cents <price> --quantity <qty>`
     *   Updates price and quantity using TCGPlayer SKUs.
 
 ### 4. Order Fulfillment

@@ -15,19 +15,19 @@ Requires a `MANAPOOL_API_TOKEN` set in your environment or Clawdbot config. For 
 
 ## Usage
 
-The skill provides a CLI tool located at `scripts/manapool_cli.py`.
+The skill provides a CLI tool.
 
 ### Example Commands
 
 ```bash
 # Search for a single
-./scripts/manapool_cli.py search-singles --scryfall-ids <uuid>
+uv run manapool search-singles --scryfall-ids <uuid>
 
 # Check prices for all in-stock singles
-./scripts/manapool_cli.py prices singles
+uv run manapool prices singles
 
 # Fetch your seller inventory
-./scripts/manapool_cli.py seller-inventory --limit 50
+uv run manapool seller-inventory --limit 50
 ```
 
 ## References
