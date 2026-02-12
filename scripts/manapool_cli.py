@@ -173,8 +173,15 @@ def main():
                         id_to_items[sf_id].append(item)
 
             if scryfall_ids:
-                stats_resp = search_products_singles({"scryfall_ids": list(set(scryfall_ids))})
-                for prod in stats_resp.get("products", []):
+                all_products = []
+                unique_ids = list(set(scryfall_ids))
+                batch_size = 50
+                for i in range(0, len(unique_ids), batch_size):
+                    batch_ids = unique_ids[i:i + batch_size]
+                    stats_resp = search_products_singles({"scryfall_ids": batch_ids})
+                    all_products.extend(stats_resp.get("products", []))
+
+                for prod in all_products:
                     sid = prod.get("scryfall_id")
                     if sid in id_to_items:
                         for item in id_to_items[sid]:
