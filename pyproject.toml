@@ -10,3 +10,7 @@ dependencies = [
 
 [project.scripts]
 manapool = "manapool.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
