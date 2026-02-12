@@ -125,90 +125,78 @@ def handle_lowest_prices(args):
         print("Error: Must provide at least one search parameter (--scryfall-ids, --tcgplayer-ids, --product-ids, --inventory-file).", file=sys.stderr)
         return
 
-    # Process Scryfall IDs in batches of 100
-    all_data = []
+    # Process IDs one by one to avoid timeouts
 
     # Collect all IDs to fetch
     s_ids = params.get("scryfall_ids", [])
     t_ids = params.get("tcgplayer_ids", [])
     p_ids = params.get("product_ids", [])
 
-    # If mixed params are present, the API says "Only one of... may be provided".
-    # So we should prioritize or split calls.
-    # For now, let's prioritize explicit arguments if mixed, or handle them sequentially.
-    # Actually, the user might provide multiple.
-    # The current implementation of make_request handles list params, but search_singles docs say:
-    # "Only one of scryfall_ids, tcgplayer_ids, tcgplayer_sku_ids, or product_ids may be provided."
-
-    # If we have multiple types, we need to make separate requests.
+    # Deduplicate
+    if s_ids: s_ids = list(set(s_ids))
+    if t_ids: t_ids = list(set(t_ids))
+    if p_ids: p_ids = list(set(p_ids))
 
     requests_to_make = []
 
     if s_ids:
-        # Deduplicate
-        s_ids = list(set(s_ids))
-        # Batch
-        for i in range(0, len(s_ids), 100):
-            requests_to_make.append({"scryfall_ids": s_ids[i:i+100]})
+        for i in s_ids:
+            requests_to_make.append({"scryfall_ids": [i]})
 
     if t_ids:
-        t_ids = list(set(t_ids))
-        for i in range(0, len(t_ids), 100):
-            requests_to_make.append({"tcgplayer_ids": t_ids[i:i+100]})
+        for i in t_ids:
+            requests_to_make.append({"tcgplayer_ids": [i]})
 
     if p_ids:
-        p_ids = list(set(p_ids))
-        for i in range(0, len(p_ids), 100):
-            requests_to_make.append({"product_ids": p_ids[i:i+100]})
+        for i in p_ids:
+            requests_to_make.append({"product_ids": [i]})
 
+    found_any = False
     for req_params in requests_to_make:
-        resp = search_singles(req_params)
-        all_data.extend(resp.get("data", []))
+        try:
+            resp = search_singles(req_params)
+            data = resp.get("data", [])
+            if data:
+                found_any = True
+                for item in data:
+                    print_product_lowest_prices(item)
+        except Exception as e:
+            print(f"Error fetching data for {req_params}: {e}", file=sys.stderr)
+            continue
 
-    if not all_data:
+    if not found_any:
         print("No products found.")
-        return
 
-    # Deduplicate results by ID to avoid printing duplicates if multiple batches return same (unlikely with ID batching but good practice)
-    seen_ids = set()
-    unique_data = []
-    for item in all_data:
-        # Use scryfall_id or product_id as key
-        pid = item.get("scryfall_id") or item.get("product_id") or item.get("name") # Fallback
-        if pid not in seen_ids:
-            seen_ids.add(pid)
-            unique_data.append(item)
+def print_product_lowest_prices(item):
+    name = item.get("name")
+    set_code = item.get("set_code")
+    print(f"Product: {name} ({set_code})")
 
-    for item in unique_data:
-        name = item.get("name")
-        set_code = item.get("set_code")
-        print(f"Product: {name} ({set_code})")
+    # TCGPlayer info (Market)
+    price_market = item.get("price_market")
+    price_market_foil = item.get("price_market_foil")
 
-        # TCGPlayer info (Market)
-        price_market = item.get("price_market")
-        price_market_foil = item.get("price_market_foil")
+    print("-" * 75)
+    print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15} {'TCG Market':<15}")
+    print("-" * 75)
 
-        print("-" * 75)
-        print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15} {'TCG Market':<15}")
-        print("-" * 75)
+    variants = item.get("variants", [])
+    # Sort variants by finish then condition?
+    # Condition order: NM, LP, MP, HP, DMG
+    cond_order = {"NM": 1, "LP": 2, "MP": 3, "HP": 4, "DMG": 5}
+    variants.sort(key=lambda x: (x.get("finish_id"), cond_order.get(x.get("condition_id"), 99)))
 
-        variants = item.get("variants", [])
-        # Sort variants by finish then condition?
-        # Condition order: NM, LP, MP, HP, DMG
-        cond_order = {"NM": 1, "LP": 2, "MP": 3, "HP": 4, "DMG": 5}
-        variants.sort(key=lambda x: (x.get("finish_id"), cond_order.get(x.get("condition_id"), 99)))
+    for variant in variants:
+        cond = variant.get("condition_id")
+        finish = variant.get("finish_id")
+        low = variant.get("low_price")
 
-        for variant in variants:
-            cond = variant.get("condition_id")
-            finish = variant.get("finish_id")
-            low = variant.get("low_price")
+        if not low: continue
 
-            if not low: continue
+        tcg_price = price_market_foil if finish in ["FO", "EF"] else price_market
 
-            tcg_price = price_market_foil if finish in ["FO", "EF"] else price_market
-
-            print(f"{cond:<10} {finish:<10} {format_price(low):<15} {format_price(tcg_price):<15}")
-        print("\n")
+        print(f"{cond:<10} {finish:<10} {format_price(low):<15} {format_price(tcg_price):<15}")
+    print("\n")
 
 def main():
     parser = argparse.ArgumentParser(description="Manapool API CLI")
