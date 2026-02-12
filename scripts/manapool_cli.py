@@ -89,6 +89,115 @@ def get_lowest_price(item):
             return variant.get("low_price")
     return None
 
+def format_price(cents):
+    if cents is None:
+        return "N/A"
+    return f"${cents/100:.2f}"
+
+def handle_lowest_prices(args):
+    params = {}
+    if args.scryfall_ids: params.setdefault("scryfall_ids", []).extend(args.scryfall_ids)
+    if args.tcgplayer_ids: params.setdefault("tcgplayer_ids", []).extend(args.tcgplayer_ids)
+    if args.product_ids: params.setdefault("product_ids", []).extend(args.product_ids)
+
+    if args.inventory_file:
+        try:
+            with open(args.inventory_file, "r") as f:
+                inv_data = json.load(f)
+
+            # Extract scryfall_ids from inventory
+            inventory = inv_data.get("inventory", [])
+            scryfall_ids = []
+            for item in inventory:
+                s_id = item.get("product", {}).get("single", {}).get("scryfall_id")
+                if s_id:
+                    scryfall_ids.append(s_id)
+
+            if scryfall_ids:
+                # Deduplicate
+                scryfall_ids = list(set(scryfall_ids))
+                params.setdefault("scryfall_ids", []).extend(scryfall_ids)
+        except Exception as e:
+            print(f"Error reading inventory file: {e}", file=sys.stderr)
+            return
+
+    if not params:
+        print("Error: Must provide at least one search parameter (--scryfall-ids, --tcgplayer-ids, --product-ids, --inventory-file).", file=sys.stderr)
+        return
+
+    # Process IDs one by one to avoid timeouts
+
+    # Collect all IDs to fetch
+    s_ids = params.get("scryfall_ids", [])
+    t_ids = params.get("tcgplayer_ids", [])
+    p_ids = params.get("product_ids", [])
+
+    # Deduplicate
+    if s_ids: s_ids = list(set(s_ids))
+    if t_ids: t_ids = list(set(t_ids))
+    if p_ids: p_ids = list(set(p_ids))
+
+    requests_to_make = []
+
+    if s_ids:
+        for i in s_ids:
+            requests_to_make.append({"scryfall_ids": [i]})
+
+    if t_ids:
+        for i in t_ids:
+            requests_to_make.append({"tcgplayer_ids": [i]})
+
+    if p_ids:
+        for i in p_ids:
+            requests_to_make.append({"product_ids": [i]})
+
+    found_any = False
+    for req_params in requests_to_make:
+        try:
+            resp = search_singles(req_params)
+            data = resp.get("data", [])
+            if data:
+                found_any = True
+                for item in data:
+                    print_product_lowest_prices(item)
+        except Exception as e:
+            print(f"Error fetching data for {req_params}: {e}", file=sys.stderr)
+            continue
+
+    if not found_any:
+        print("No products found.")
+
+def print_product_lowest_prices(item):
+    name = item.get("name")
+    set_code = item.get("set_code")
+    print(f"Product: {name} ({set_code})")
+
+    # TCGPlayer info (Market)
+    price_market = item.get("price_market")
+    price_market_foil = item.get("price_market_foil")
+
+    print("-" * 75)
+    print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15} {'TCG Market':<15}")
+    print("-" * 75)
+
+    variants = item.get("variants", [])
+    # Sort variants by finish then condition?
+    # Condition order: NM, LP, MP, HP, DMG
+    cond_order = {"NM": 1, "LP": 2, "MP": 3, "HP": 4, "DMG": 5}
+    variants.sort(key=lambda x: (x.get("finish_id"), cond_order.get(x.get("condition_id"), 99)))
+
+    for variant in variants:
+        cond = variant.get("condition_id")
+        finish = variant.get("finish_id")
+        low = variant.get("low_price")
+
+        if not low: continue
+
+        tcg_price = price_market_foil if finish in ["FO", "EF"] else price_market
+
+        print(f"{cond:<10} {finish:<10} {format_price(low):<15} {format_price(tcg_price):<15}")
+    print("\n")
+
 def main():
     parser = argparse.ArgumentParser(description="Manapool API CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -103,6 +212,13 @@ def main():
     search_z = subparsers.add_parser("search-sealed")
     search_z.add_argument("--tcgplayer-ids", nargs="+")
     search_z.add_argument("--product-ids", nargs="+")
+
+    # Lowest Prices
+    lowest_prices = subparsers.add_parser("lowest-prices")
+    lowest_prices.add_argument("--scryfall-ids", nargs="+")
+    lowest_prices.add_argument("--tcgplayer-ids", nargs="+")
+    lowest_prices.add_argument("--product-ids", nargs="+")
+    lowest_prices.add_argument("--inventory-file", help="Path to inventory JSON file to check prices for")
 
     # Prices
     prices = subparsers.add_parser("prices")
@@ -141,6 +257,9 @@ def main():
         if args.tcgplayer_ids: params["tcgplayer_ids"] = args.tcgplayer_ids
         if args.product_ids: params["product_ids"] = args.product_ids
         print(json.dumps(search_sealed(params), indent=2))
+
+    elif args.command == "lowest-prices":
+        handle_lowest_prices(args)
 
     elif args.command == "prices":
         print(json.dumps(get_prices(args.category), indent=2))
