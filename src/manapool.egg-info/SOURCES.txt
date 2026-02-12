@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/manapool/__init__.py
+src/manapool/api.py
+src/manapool/cli.py
+src/manapool.egg-info/PKG-INFO
+src/manapool.egg-info/SOURCES.txt
+src/manapool.egg-info/dependency_links.txt
+src/manapool.egg-info/entry_points.txt
+src/manapool.egg-info/requires.txt
+src/manapool.egg-info/top_level.txt
