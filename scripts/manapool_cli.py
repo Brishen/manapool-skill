@@ -55,7 +55,6 @@ def make_request(path, method="GET", params=None, data=None):
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
 
-# ... [Keep helper functions: search_singles, search_sealed, get_prices, optimize_cart, get_seller_inventory, search_products_singles, get_lowest_price] ...
 def search_singles(query_params):
     return make_request("/products/singles", params=query_params)
 
@@ -70,9 +69,6 @@ def optimize_cart(cart_data):
 
 def get_seller_inventory(params):
     return make_request("/seller/inventory", params=params)
-
-def search_products_singles(query_params):
-    return make_request("/products/singles", params=query_params)
 
 def get_lowest_price(item):
     stats = item.get("market_stats")
@@ -158,27 +154,6 @@ def main():
         params = {"limit": args.limit, "offset": args.offset}
         if args.min_quantity is not None: params["minQuantity"] = args.min_quantity
         inventory_resp = get_seller_inventory(params)
-
-        if args.stats or args.summary:
-            # Batch stats logic remains same
-            scryfall_ids = []
-            id_to_items = {}
-            for item in inventory_resp.get("inventory", []):
-                if item.get("product_type") == "mtg_single":
-                    sf_id = item.get("product", {}).get("single", {}).get("scryfall_id")
-                    if sf_id:
-                        scryfall_ids.append(sf_id)
-                        if sf_id not in id_to_items:
-                            id_to_items[sf_id] = []
-                        id_to_items[sf_id].append(item)
-
-            if scryfall_ids:
-                stats_resp = search_products_singles({"scryfall_ids": list(set(scryfall_ids))})
-                for prod in stats_resp.get("products", []):
-                    sid = prod.get("scryfall_id")
-                    if sid in id_to_items:
-                        for item in id_to_items[sid]:
-                            item["market_stats"] = prod.get("market_stats")
 
         if args.summary:
             print(f"{'Name':<30} {'Set':<10} {'Price':>8} {'Low':>8} {'Qty':>4}")
