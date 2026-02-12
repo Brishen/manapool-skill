@@ -89,6 +89,56 @@ def get_lowest_price(item):
             return variant.get("low_price")
     return None
 
+def format_price(cents):
+    if cents is None:
+        return "N/A"
+    return f"${cents/100:.2f}"
+
+def handle_lowest_prices(args):
+    params = {}
+    if args.scryfall_ids: params["scryfall_ids"] = args.scryfall_ids
+    if args.tcgplayer_ids: params["tcgplayer_ids"] = args.tcgplayer_ids
+    if args.product_ids: params["product_ids"] = args.product_ids
+
+    if not params:
+        print("Error: Must provide at least one search parameter (--scryfall-ids, --tcgplayer-ids, --product-ids).", file=sys.stderr)
+        return
+
+    response = search_singles(params)
+    data = response.get("data", [])
+
+    if not data:
+        print("No products found.")
+        return
+
+    for item in data:
+        name = item.get("name")
+        set_code = item.get("set_code")
+        print(f"Product: {name} ({set_code})")
+
+        # TCGPlayer info (Market)
+        price_market = item.get("price_market")
+        price_market_foil = item.get("price_market_foil")
+
+        print(f"TCGPlayer Market Price: {format_price(price_market)} (NF), {format_price(price_market_foil)} (Foil)")
+        print("-" * 55)
+        print(f"{'Condition':<10} {'Finish':<10} {'Manapool Low':<15}")
+        print("-" * 55)
+
+        variants = item.get("variants", [])
+        # Sort variants by finish then condition?
+        # Condition order: NM, LP, MP, HP, DMG
+        cond_order = {"NM": 1, "LP": 2, "MP": 3, "HP": 4, "DMG": 5}
+        variants.sort(key=lambda x: (x.get("finish_id"), cond_order.get(x.get("condition_id"), 99)))
+
+        for variant in variants:
+            cond = variant.get("condition_id")
+            finish = variant.get("finish_id")
+            low = variant.get("low_price")
+
+            print(f"{cond:<10} {finish:<10} {format_price(low):<15}")
+        print("\n")
+
 def main():
     parser = argparse.ArgumentParser(description="Manapool API CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -103,6 +153,12 @@ def main():
     search_z = subparsers.add_parser("search-sealed")
     search_z.add_argument("--tcgplayer-ids", nargs="+")
     search_z.add_argument("--product-ids", nargs="+")
+
+    # Lowest Prices
+    lowest_prices = subparsers.add_parser("lowest-prices")
+    lowest_prices.add_argument("--scryfall-ids", nargs="+")
+    lowest_prices.add_argument("--tcgplayer-ids", nargs="+")
+    lowest_prices.add_argument("--product-ids", nargs="+")
 
     # Prices
     prices = subparsers.add_parser("prices")
@@ -141,6 +197,9 @@ def main():
         if args.tcgplayer_ids: params["tcgplayer_ids"] = args.tcgplayer_ids
         if args.product_ids: params["product_ids"] = args.product_ids
         print(json.dumps(search_sealed(params), indent=2))
+
+    elif args.command == "lowest-prices":
+        handle_lowest_prices(args)
 
     elif args.command == "prices":
         print(json.dumps(get_prices(args.category), indent=2))
